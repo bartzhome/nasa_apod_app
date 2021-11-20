@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NASA - APOD</title>
+</head>
+<style>
+a:link {
+  text-decoration: none;
+}
+</style>
+<body>
+<div class="container">
+    {% load static %}
+    <img src="{% static 'img/nasa_logo.png' %}" alt="NASA Logo">
+    <br />
+    {% include "search.html" %}
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
