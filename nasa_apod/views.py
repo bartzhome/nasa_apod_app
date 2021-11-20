@@ -1,8 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
-
-
-def first_commit():
-    print("12232132121")
-    return False
+def index(request):
+    return HttpResponse("Hello World")
