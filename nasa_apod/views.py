@@ -21,7 +21,8 @@ def index(request):
             end_date = datetime.strptime(request.POST['end-date'], '%Y-%m-%d')
             date_now = datetime.today()
         except ValueError:
-            raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+            message = "Incorrect data format, should be YYYY-MM-DD"
+            return render(request, 'base.html', {'message': message})
 
         # validate that start date is less than end date and end_data is equal or less than todays date
         if start_date < end_date <= date_now:
@@ -30,19 +31,17 @@ def index(request):
             end_date = datetime.strftime(end_date, '%Y-%m-%d')
 
             # get results from search
-            results = search_results(start_date, end_date)
+            results = search_results(request,start_date, end_date)
+            date_now = datetime.today().strftime('%Y-%m-%d')
+            return render(request, 'home.html', {'results': results, 'date': date_now})
 
-            return render(request, 'home.html', {'results': results})
-
-        else:
-            print("Error")
-
-        return render(request, 'base.html')
     else:
-        return HttpResponse("Invalid entry: Select a date - Handle this gracefully with JS")
+        message = "Invalid Date Entry. Please try again."
+        date_now = datetime.today().strftime('%Y-%m-%d')
+        return render(request,'base.html', {'message': message, 'date': date_now})
 
 
-def search_results(start_date, end_date):
+def search_results(request,start_date, end_date):
     # api key
     API_KEY = "EAnJsZsdRGv4hM0zeLUKosCya5AkJV1GP5jDHRxQ"
 
@@ -60,4 +59,5 @@ def search_results(start_date, end_date):
         json_data = response.json()
         return json_data
     except ConnectionError:
-        return "There was a connection error. Please try again later."
+        message = "There was a connection error. Please try again later."
+        return render(request, 'base.html', {'message': message})
