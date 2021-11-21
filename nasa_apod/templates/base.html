@@ -14,7 +14,9 @@ a:link {
     {% load static %}
     <img src="{% static 'img/nasa_logo.png' %}" alt="NASA Logo">
     <br />
+
     {% include "search.html" %}
+
     {% block content %}{% endblock %}
 </div>
 </body>

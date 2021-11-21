@@ -1,0 +1,18 @@
+<table style="text-align:center; margin-top: 10px;">
+
+    {% for item in results %}
+    <tr>
+        <td>
+            {{ item.copyright }}<br/>
+            {{ item.date }}<br/>
+            {{ item.title }}<br/>
+            {{ item.explanation }}<br/>
+            <img src="{{ item.url }}" width="500" height="300">
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<script>
+</script>
