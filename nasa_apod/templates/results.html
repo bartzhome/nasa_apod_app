@@ -3,11 +3,19 @@
     {% for item in results %}
     <tr>
         <td>
+            {% if item.copyright %}
             {{ item.copyright }}<br/>
+            {% else %}
+            <span>Unknown</span><br/>
+            {% endif %}
             {{ item.date }}<br/>
             {{ item.title }}<br/>
             {{ item.explanation }}<br/>
-            <img src="{{ item.url }}" width="500" height="300">
+            {% if item.media_type == "image" %}
+                <img src="{{ item.url }}" width="500" height="300">
+            {% else %}
+                <iframe width="500" height="300" src="{{ item.url }}"></iframe>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}

@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from datetime import datetime, date
+from datetime import datetime
 import requests
 import json
 
@@ -33,18 +32,14 @@ def index(request):
             # get results from search
             results = search_results(start_date, end_date)
 
-            print(results)
-
             return render(request, 'home.html', {'results': results})
 
         else:
-            print("ERRORRORORORORORORO")
+            print("Error")
 
         return render(request, 'base.html')
-
-
     else:
-        return HttpResponse("FUCK YOU")
+        return HttpResponse("Invalid entry: Select a date - Handle this gracefully with JS")
 
 
 def search_results(start_date, end_date):

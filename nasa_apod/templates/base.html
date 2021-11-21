@@ -13,9 +13,15 @@ a:link {
 <div class="container">
     {% load static %}
     <img src="{% static 'img/nasa_logo.png' %}" alt="NASA Logo">
+    <div>
+        APOD: Astronomy Picture of the Day<br/>
+        powered by NASA Open APIs<br/>
+        <a href="https://api.nasa.gov">https://api.nasa.gov</a>
+    </div>
     <br />
 
     {% include "search.html" %}
+    {% include "scripts.html" %}
 
     {% block content %}{% endblock %}
 </div>
