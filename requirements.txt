@@ -1,1 +1,2 @@
-install requests
+Django~=3.2.9
+requests~=2.26.0
